@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "a", "label": "a", "shape": "dot", "size": 10}, {"id": "b", "label": "b", "shape": "dot", "size": 10}, {"id": "c", "label": "c", "shape": "dot", "size": 10}, {"id": "d", "label": "d", "shape": "dot", "size": 10}, {"id": "e", "label": "e", "shape": "dot", "size": 10}, {"id": "f", "label": "f", "shape": "dot", "size": 10}, {"id": "g", "label": "g", "shape": "dot", "size": 10}, {"id": "h", "label": "h", "shape": "dot", "size": 10}, {"id": "i", "label": "i", "shape": "dot", "size": 10}, {"id": "j", "label": "j", "shape": "dot", "size": 10}, {"id": "m", "label": "m", "shape": "dot", "size": 10}, {"id": "n", "label": "n", "shape": "dot", "size": 10}, {"id": "o", "label": "o", "shape": "dot", "size": 10}, {"id": "p", "label": "p", "shape": "dot", "size": 10}, {"id": "q", "label": "q", "shape": "dot", "size": 10}, {"id": "r", "label": "r", "shape": "dot", "size": 10}, {"id": "s", "label": "s", "shape": "dot", "size": 10}, {"id": "u", "label": "u", "shape": "dot", "size": 10}, {"id": "v", "label": "v", "shape": "dot", "size": 10}, {"id": "w", "label": "w", "shape": "dot", "size": 10}, {"id": "x", "label": "x", "shape": "dot", "size": 10}, {"id": "z", "label": "z", "shape": "dot", "size": 10}, {"id": "k", "label": "k", "shape": "dot", "size": 10}, {"id": "l", "label": "l", "shape": "dot", "size": 10}, {"id": "t", "label": "t", "shape": "dot", "size": 10}, {"id": "y", "label": "y", "shape": "dot", "size": 10}]);
+        edges = new vis.DataSet([{"arrows": "to", "from": "a", "to": "b", "weight": 1}, {"arrows": "to", "from": "a", "to": "c", "weight": 1}, {"arrows": "to", "from": "a", "to": "d", "weight": 1}, {"arrows": "to", "from": "a", "to": "e", "weight": 1}, {"arrows": "to", "from": "a", "to": "f", "weight": 1}, {"arrows": "to", "from": "a", "to": "g", "weight": 1}, {"arrows": "to", "from": "a", "to": "h", "weight": 1}, {"arrows": "to", "from": "a", "to": "i", "weight": 1}, {"arrows": "to", "from": "a", "to": "j", "weight": 1}, {"arrows": "to", "from": "a", "to": "m", "weight": 1}, {"arrows": "to", "from": "a", "to": "n", "weight": 1}, {"arrows": "to", "from": "a", "to": "o", "weight": 1}, {"arrows": "to", "from": "a", "to": "p", "weight": 1}, {"arrows": "to", "from": "a", "to": "q", "weight": 1}, {"arrows": "to", "from": "a", "to": "r", "weight": 1}, {"arrows": "to", "from": "a", "to": "s", "weight": 1}, {"arrows": "to", "from": "a", "to": "u", "weight": 1}, {"arrows": "to", "from": "a", "to": "v", "weight": 1}, {"arrows": "to", "from": "a", "to": "w", "weight": 1}, {"arrows": "to", "from": "a", "to": "x", "weight": 1}, {"arrows": "to", "from": "a", "to": "z", "weight": 1}, {"arrows": "to", "from": "b", "to": "c", "weight": 1}, {"arrows": "to", "from": "b", "to": "d", "weight": 1}, {"arrows": "to", "from": "b", "to": "e", "weight": 1}, {"arrows": "to", "from": "b", "to": "f", "weight": 1}, {"arrows": "to", "from": "b", "to": "g", "weight": 1}, {"arrows": "to", "from": "b", "to": "k", "weight": 1}, {"arrows": "to", "from": "b", "to": "l", "weight": 1}, {"arrows": "to", "from": "b", "to": "m", "weight": 1}, {"arrows": "to", "from": "b", "to": "n", "weight": 1}, {"arrows": "to", "from": "b", "to": "o", "weight": 1}, {"arrows": "to", "from": "b", "to": "p", "weight": 1}, {"arrows": "to", "from": "b", "to": "r", "weight": 1}, {"arrows": "to", "from": "b", "to": "s", "weight": 1}, {"arrows": "to", "from": "b", "to": "t", "weight": 1}, {"arrows": "to", "from": "b", "to": "v", "weight": 1}, {"arrows": "to", "from": "b", "to": "w", "weight": 1}, {"arrows": "to", "from": "b", "to": "x", "weight": 1}, {"arrows": "to", "from": "b", "to": "y", "weight": 1}, {"arrows": "to", "from": "b", "to": "z", "weight": 1}, {"arrows": "to", "from": "c", "to": "d", "weight": 1}, {"arrows": "to", "from": "c", "to": "e", "weight": 1}, {"arrows": "to", "from": "c", "to": "f", "weight": 1}, {"arrows": "to", "from": "c", "to": "g", "weight": 1}, {"arrows": "to", "from": "c", "to": "h", "weight": 1}, {"arrows": "to", "from": "c", "to": "i", "weight": 1}, {"arrows": "to", "from": "c", "to": "j", "weight": 1}, {"arrows": "to", "from": "c", "to": "k", "weight": 1}, {"arrows": "to", "from": "c", "to": "l", "weight": 1}, {"arrows": "to", "from": "c", "to": "m", "weight": 1}, {"arrows": "to", "from": "c", "to": "n", "weight": 1}, {"arrows": "to", "from": "c", "to": "o", "weight": 1}, {"arrows": "to", "from": "c", "to": "p", "weight": 1}, {"arrows": "to", "from": "c", "to": "q", "weight": 1}, {"arrows": "to", "from": "c", "to": "r", "weight": 1}, {"arrows": "to", "from": "c", "to": "s", "weight": 1}, {"arrows": "to", "from": "c", "to": "t", "weight": 1}, {"arrows": "to", "from": "c", "to": "u", "weight": 1}, {"arrows": "to", "from": "c", "to": "v", "weight": 1}, {"arrows": "to", "from": "c", "to": "w", "weight": 1}, {"arrows": "to", "from": "c", "to": "x", "weight": 1}, {"arrows": "to", "from": "c", "to": "y", "weight": 1}, {"arrows": "to", "from": "c", "to": "z", "weight": 1}, {"arrows": "to", "from": "d", "to": "e", "weight": 1}, {"arrows": "to", "from": "d", "to": "f", "weight": 1}, {"arrows": "to", "from": "d", "to": "g", "weight": 1}, {"arrows": "to", "from": "d", "to": "h", "weight": 1}, {"arrows": "to", "from": "d", "to": "i", "weight": 1}, {"arrows": "to", "from": "d", "to": "j", "weight": 1}, {"arrows": "to", "from": "d", "to": "k", "weight": 1}, {"arrows": "to", "from": "d", "to": "l", "weight": 1}, {"arrows": "to", "from": "d", "to": "n", "weight": 1}, {"arrows": "to", "from": "d", "to": "o", "weight": 1}, {"arrows": "to", "from": "d", "to": "q", "weight": 1}, {"arrows": "to", "from": "d", "to": "r", "weight": 1}, {"arrows": "to", "from": "d", "to": "s", "weight": 1}, {"arrows": "to", "from": "d", "to": "t", "weight": 1}, {"arrows": "to", "from": "d", "to": "u", "weight": 1}, {"arrows": "to", "from": "d", "to": "w", "weight": 1}, {"arrows": "to", "from": "d", "to": "x", "weight": 1}, {"arrows": "to", "from": "d", "to": "y", "weight": 1}, {"arrows": "to", "from": "d", "to": "z", "weight": 1}, {"arrows": "to", "from": "e", "to": "f", "weight": 1}, {"arrows": "to", "from": "e", "to": "g", "weight": 1}, {"arrows": "to", "from": "e", "to": "h", "weight": 1}, {"arrows": "to", "from": "e", "to": "i", "weight": 1}, {"arrows": "to", "from": "e", "to": "j", "weight": 1}, {"arrows": "to", "from": "e", "to": "k", "weight": 1}, {"arrows": "to", "from": "e", "to": "l", "weight": 1}, {"arrows": "to", "from": "e", "to": "m", "weight": 1}, {"arrows": "to", "from": "e", "to": "n", "weight": 1}, {"arrows": "to", "from": "e", "to": "o", "weight": 1}, {"arrows": "to", "from": "e", "to": "p", "weight": 1}, {"arrows": "to", "from": "e", "to": "q", "weight": 1}, {"arrows": "to", "from": "e", "to": "r", "weight": 1}, {"arrows": "to", "from": "e", "to": "s", "weight": 1}, {"arrows": "to", "from": "e", "to": "t", "weight": 1}, {"arrows": "to", "from": "e", "to": "u", "weight": 1}, {"arrows": "to", "from": "e", "to": "v", "weight": 1}, {"arrows": "to", "from": "e", "to": "w", "weight": 1}, {"arrows": "to", "from": "e", "to": "x", "weight": 1}, {"arrows": "to", "from": "e", "to": "y", "weight": 1}, {"arrows": "to", "from": "e", "to": "z", "weight": 1}, {"arrows": "to", "from": "f", "to": "g", "weight": 1}, {"arrows": "to", "from": "f", "to": "h", "weight": 1}, {"arrows": "to", "from": "f", "to": "i", "weight": 1}, {"arrows": "to", "from": "f", "to": "j", "weight": 1}, {"arrows": "to", "from": "f", "to": "k", "weight": 1}, {"arrows": "to", "from": "f", "to": "m", "weight": 1}, {"arrows": "to", "from": "f", "to": "n", "weight": 1}, {"arrows": "to", "from": "f", "to": "o", "weight": 1}, {"arrows": "to", "from": "f", "to": "p", "weight": 1}, {"arrows": "to", "from": "f", "to": "q", "weight": 1}, {"arrows": "to", "from": "f", "to": "r", "weight": 1}, {"arrows": "to", "from": "f", "to": "s", "weight": 1}, {"arrows": "to", "from": "f", "to": "t", "weight": 1}, {"arrows": "to", "from": "f", "to": "u", "weight": 1}, {"arrows": "to", "from": "f", "to": "v", "weight": 1}, {"arrows": "to", "from": "f", "to": "w", "weight": 1}, {"arrows": "to", "from": "f", "to": "x", "weight": 1}, {"arrows": "to", "from": "f", "to": "y", "weight": 1}, {"arrows": "to", "from": "g", "to": "h", "weight": 1}, {"arrows": "to", "from": "g", "to": "i", "weight": 1}, {"arrows": "to", "from": "g", "to": "j", "weight": 1}, {"arrows": "to", "from": "g", "to": "k", "weight": 1}, {"arrows": "to", "from": "g", "to": "l", "weight": 1}, {"arrows": "to", "from": "g", "to": "m", "weight": 1}, {"arrows": "to", "from": "g", "to": "n", "weight": 1}, {"arrows": "to", "from": "g", "to": "o", "weight": 1}, {"arrows": "to", "from": "g", "to": "p", "weight": 1}, {"arrows": "to", "from": "g", "to": "q", "weight": 1}, {"arrows": "to", "from": "g", "to": "r", "weight": 1}, {"arrows": "to", "from": "g", "to": "s", "weight": 1}, {"arrows": "to", "from": "g", "to": "u", "weight": 1}, {"arrows": "to", "from": "g", "to": "v", "weight": 1}, {"arrows": "to", "from": "g", "to": "w", "weight": 1}, {"arrows": "to", "from": "g", "to": "x", "weight": 1}, {"arrows": "to", "from": "g", "to": "y", "weight": 1}, {"arrows": "to", "from": "g", "to": "z", "weight": 1}, {"arrows": "to", "from": "h", "to": "i", "weight": 1}, {"arrows": "to", "from": "h", "to": "j", "weight": 1}, {"arrows": "to", "from": "h", "to": "k", "weight": 1}, {"arrows": "to", "from": "h", "to": "l", "weight": 1}, {"arrows": "to", "from": "h", "to": "m", "weight": 1}, {"arrows": "to", "from": "h", "to": "n", "weight": 1}, {"arrows": "to", "from": "h", "to": "o", "weight": 1}, {"arrows": "to", "from": "h", "to": "p", "weight": 1}, {"arrows": "to", "from": "h", "to": "q", "weight": 1}, {"arrows": "to", "from": "h", "to": "r", "weight": 1}, {"arrows": "to", "from": "h", "to": "s", "weight": 1}, {"arrows": "to", "from": "h", "to": "u", "weight": 1}, {"arrows": "to", "from": "h", "to": "v", "weight": 1}, {"arrows": "to", "from": "h", "to": "w", "weight": 1}, {"arrows": "to", "from": "h", "to": "x", "weight": 1}, {"arrows": "to", "from": "h", "to": "y", "weight": 1}, {"arrows": "to", "from": "h", "to": "z", "weight": 1}, {"arrows": "to", "from": "i", "to": "j", "weight": 1}, {"arrows": "to", "from": "i", "to": "k", "weight": 1}, {"arrows": "to", "from": "i", "to": "m", "weight": 1}, {"arrows": "to", "from": "i", "to": "n", "weight": 1}, {"arrows": "to", "from": "i", "to": "o", "weight": 1}, {"arrows": "to", "from": "i", "to": "p", "weight": 1}, {"arrows": "to", "from": "i", "to": "q", "weight": 1}, {"arrows": "to", "from": "i", "to": "r", "weight": 1}, {"arrows": "to", "from": "i", "to": "s", "weight": 1}, {"arrows": "to", "from": "i", "to": "t", "weight": 1}, {"arrows": "to", "from": "i", "to": "u", "weight": 1}, {"arrows": "to", "from": "i", "to": "v", "weight": 1}, {"arrows": "to", "from": "i", "to": "w", "weight": 1}, {"arrows": "to", "from": "i", "to": "x", "weight": 1}, {"arrows": "to", "from": "i", "to": "y", "weight": 1}, {"arrows": "to", "from": "i", "to": "z", "weight": 1}, {"arrows": "to", "from": "j", "to": "k", "weight": 1}, {"arrows": "to", "from": "j", "to": "m", "weight": 1}, {"arrows": "to", "from": "j", "to": "n", "weight": 1}, {"arrows": "to", "from": "j", "to": "o", "weight": 1}, {"arrows": "to", "from": "j", "to": "p", "weight": 1}, {"arrows": "to", "from": "j", "to": "q", "weight": 1}, {"arrows": "to", "from": "j", "to": "r", "weight": 1}, {"arrows": "to", "from": "j", "to": "s", "weight": 1}, {"arrows": "to", "from": "j", "to": "t", "weight": 1}, {"arrows": "to", "from": "j", "to": "u", "weight": 1}, {"arrows": "to", "from": "j", "to": "v", "weight": 1}, {"arrows": "to", "from": "j", "to": "w", "weight": 1}, {"arrows": "to", "from": "j", "to": "x", "weight": 1}, {"arrows": "to", "from": "j", "to": "y", "weight": 1}, {"arrows": "to", "from": "j", "to": "z", "weight": 1}, {"arrows": "to", "from": "k", "to": "l", "weight": 1}, {"arrows": "to", "from": "k", "to": "n", "weight": 1}, {"arrows": "to", "from": "k", "to": "o", "weight": 1}, {"arrows": "to", "from": "k", "to": "q", "weight": 1}, {"arrows": "to", "from": "k", "to": "r", "weight": 1}, {"arrows": "to", "from": "k", "to": "s", "weight": 1}, {"arrows": "to", "from": "k", "to": "t", "weight": 1}, {"arrows": "to", "from": "k", "to": "u", "weight": 1}, {"arrows": "to", "from": "k", "to": "v", "weight": 1}, {"arrows": "to", "from": "k", "to": "w", "weight": 1}, {"arrows": "to", "from": "k", "to": "x", "weight": 1}, {"arrows": "to", "from": "k", "to": "y", "weight": 1}, {"arrows": "to", "from": "k", "to": "z", "weight": 1}, {"arrows": "to", "from": "l", "to": "m", "weight": 1}, {"arrows": "to", "from": "l", "to": "n", "weight": 1}, {"arrows": "to", "from": "l", "to": "o", "weight": 1}, {"arrows": "to", "from": "l", "to": "p", "weight": 1}, {"arrows": "to", "from": "l", "to": "q", "weight": 1}, {"arrows": "to", "from": "l", "to": "r", "weight": 1}, {"arrows": "to", "from": "l", "to": "s", "weight": 1}, {"arrows": "to", "from": "l", "to": "t", "weight": 1}, {"arrows": "to", "from": "l", "to": "u", "weight": 1}, {"arrows": "to", "from": "l", "to": "w", "weight": 1}, {"arrows": "to", "from": "l", "to": "x", "weight": 1}, {"arrows": "to", "from": "l", "to": "y", "weight": 1}, {"arrows": "to", "from": "l", "to": "z", "weight": 1}, {"arrows": "to", "from": "m", "to": "n", "weight": 1}, {"arrows": "to", "from": "m", "to": "o", "weight": 1}, {"arrows": "to", "from": "m", "to": "p", "weight": 1}, {"arrows": "to", "from": "m", "to": "q", "weight": 1}, {"arrows": "to", "from": "m", "to": "r", "weight": 1}, {"arrows": "to", "from": "m", "to": "s", "weight": 1}, {"arrows": "to", "from": "m", "to": "t", "weight": 1}, {"arrows": "to", "from": "m", "to": "u", "weight": 1}, {"arrows": "to", "from": "m", "to": "v", "weight": 1}, {"arrows": "to", "from": "m", "to": "w", "weight": 1}, {"arrows": "to", "from": "m", "to": "x", "weight": 1}, {"arrows": "to", "from": "m", "to": "y", "weight": 1}, {"arrows": "to", "from": "m", "to": "z", "weight": 1}, {"arrows": "to", "from": "n", "to": "o", "weight": 1}, {"arrows": "to", "from": "n", "to": "p", "weight": 1}, {"arrows": "to", "from": "n", "to": "q", "weight": 1}, {"arrows": "to", "from": "n", "to": "r", "weight": 1}, {"arrows": "to", "from": "n", "to": "s", "weight": 1}, {"arrows": "to", "from": "n", "to": "t", "weight": 1}, {"arrows": "to", "from": "n", "to": "u", "weight": 1}, {"arrows": "to", "from": "n", "to": "v", "weight": 1}, {"arrows": "to", "from": "n", "to": "w", "weight": 1}, {"arrows": "to", "from": "n", "to": "x", "weight": 1}, {"arrows": "to", "from": "n", "to": "y", "weight": 1}, {"arrows": "to", "from": "n", "to": "z", "weight": 1}, {"arrows": "to", "from": "o", "to": "p", "weight": 1}, {"arrows": "to", "from": "o", "to": "q", "weight": 1}, {"arrows": "to", "from": "o", "to": "r", "weight": 1}, {"arrows": "to", "from": "o", "to": "s", "weight": 1}, {"arrows": "to", "from": "o", "to": "t", "weight": 1}, {"arrows": "to", "from": "o", "to": "u", "weight": 1}, {"arrows": "to", "from": "o", "to": "w", "weight": 1}, {"arrows": "to", "from": "o", "to": "x", "weight": 1}, {"arrows": "to", "from": "o", "to": "y", "weight": 1}, {"arrows": "to", "from": "o", "to": "z", "weight": 1}, {"arrows": "to", "from": "p", "to": "q", "weight": 1}, {"arrows": "to", "from": "p", "to": "r", "weight": 1}, {"arrows": "to", "from": "p", "to": "s", "weight": 1}, {"arrows": "to", "from": "p", "to": "t", "weight": 1}, {"arrows": "to", "from": "p", "to": "u", "weight": 1}, {"arrows": "to", "from": "p", "to": "w", "weight": 1}, {"arrows": "to", "from": "p", "to": "x", "weight": 1}, {"arrows": "to", "from": "p", "to": "y", "weight": 1}, {"arrows": "to", "from": "p", "to": "z", "weight": 1}, {"arrows": "to", "from": "q", "to": "r", "weight": 1}, {"arrows": "to", "from": "q", "to": "s", "weight": 1}, {"arrows": "to", "from": "q", "to": "t", "weight": 1}, {"arrows": "to", "from": "q", "to": "u", "weight": 1}, {"arrows": "to", "from": "q", "to": "v", "weight": 1}, {"arrows": "to", "from": "q", "to": "x", "weight": 1}, {"arrows": "to", "from": "q", "to": "y", "weight": 1}, {"arrows": "to", "from": "r", "to": "s", "weight": 1}, {"arrows": "to", "from": "r", "to": "t", "weight": 1}, {"arrows": "to", "from": "r", "to": "u", "weight": 1}, {"arrows": "to", "from": "r", "to": "v", "weight": 1}, {"arrows": "to", "from": "r", "to": "w", "weight": 1}, {"arrows": "to", "from": "r", "to": "x", "weight": 1}, {"arrows": "to", "from": "r", "to": "y", "weight": 1}, {"arrows": "to", "from": "r", "to": "z", "weight": 1}, {"arrows": "to", "from": "s", "to": "t", "weight": 1}, {"arrows": "to", "from": "s", "to": "u", "weight": 1}, {"arrows": "to", "from": "s", "to": "v", "weight": 1}, {"arrows": "to", "from": "s", "to": "w", "weight": 1}, {"arrows": "to", "from": "s", "to": "x", "weight": 1}, {"arrows": "to", "from": "s", "to": "y", "weight": 1}, {"arrows": "to", "from": "s", "to": "z", "weight": 1}, {"arrows": "to", "from": "t", "to": "u", "weight": 1}, {"arrows": "to", "from": "t", "to": "v", "weight": 1}, {"arrows": "to", "from": "t", "to": "w", "weight": 1}, {"arrows": "to", "from": "t", "to": "x", "weight": 1}, {"arrows": "to", "from": "t", "to": "y", "weight": 1}, {"arrows": "to", "from": "t", "to": "z", "weight": 1}, {"arrows": "to", "from": "u", "to": "v", "weight": 1}, {"arrows": "to", "from": "u", "to": "w", "weight": 1}, {"arrows": "to", "from": "u", "to": "x", "weight": 1}, {"arrows": "to", "from": "u", "to": "y", "weight": 1}, {"arrows": "to", "from": "u", "to": "z", "weight": 1}, {"arrows": "to", "from": "v", "to": "w", "weight": 1}, {"arrows": "to", "from": "v", "to": "x", "weight": 1}, {"arrows": "to", "from": "v", "to": "y", "weight": 1}, {"arrows": "to", "from": "v", "to": "z", "weight": 1}, {"arrows": "to", "from": "w", "to": "x", "weight": 1}, {"arrows": "to", "from": "w", "to": "y", "weight": 1}, {"arrows": "to", "from": "w", "to": "z", "weight": 1}, {"arrows": "to", "from": "x", "to": "y", "weight": 1}, {"arrows": "to", "from": "x", "to": "z", "weight": 1}, {"arrows": "to", "from": "y", "to": "z", "weight": 1}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": false,
+            "type": "continuous"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>

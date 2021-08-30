@@ -1,0 +1,58 @@
+"""
+It's not quite a traveling salesman problem, not quite a Eulerian trail, but 
+certainly a graph optimization problem with a seemingly tricky degree of freedom -
+we can alter the graph to add `k` edges that help optimize the objective.
+
+We're going to try to solve this one first before solving the special case (`k = 1`) in the first chapter (`../c1/`). 
+
+We might be able to write a pretty quick solution on solving the optimization 
+on just a single graph, and then just feed in different alterations, each with `k`
+new edges.  This could be quite expensive.
+
+
+Constraints:
+- 1 <= n <= 50 (nodes)
+- 0 <= k <= 50 (addable edges)
+- 1 <= a_i, b_i <= n (edge values)
+- there are n-1 tunnels
+
+Let's do an analysis here:
+    - 
+"""
+
+
+from functools import reduce
+
+import numpy as np
+
+
+def solve(board: np.ndarray) -> str: 
+    # Get winning row sets of coordinates
+    win_sets = build_row_win_sets(board)
+    board = board.transpose()
+    win_sets += build_row_win_sets(board, reverse_coor=True)
+    # Remove duplicates, O(N^2)
+    win_sets = list(reduce(
+        lambda acc, x: acc + [x] if x not in acc else acc, 
+        win_sets, list()
+    )) 
+
+    # Tidy up the outputs and send off
+    if len(win_sets) == 0:
+        return 'Impossible'
+    min_moves_to_win = min(map(len, win_sets))
+    n_possible_wins = sum([1 for x in win_sets if len(x) == min_moves_to_win])
+    return str(min_moves_to_win) + ' ' + str(n_possible_wins)
+
+
+if __name__ == '__main__':
+    t = int(input())
+    for i in range(1, t + 1):
+        # Build transformed board
+        n, k = [int(x) for x in input().split()]
+        costs = [int(x) for x in input().split()]
+        costs = [int(x) input()) for _ in range(n)]
+        costs = [int(input()) for _ in range(n)]
+        # Solve board
+        x = solve(board)
+        print(f'Case #{i}:', x)
